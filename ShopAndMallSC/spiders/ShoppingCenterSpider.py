@@ -10,7 +10,6 @@ from ..items import ShopandmallscItem
 class ShoppingCenterSpider(CrawlSpider):
     name = 'ShoppingCenterSpider'
     allowed_domains = ['shopandmall.ru']
-    #start_urls = ['https://shopandmall.ru/torgovye-centry']
     start_urls = ['https://shopandmall.ru/torgovye-centry/'+str(i) for i in range(86)]
     rules = (
     Rule(LinkExtractor(allow=(r'torgovye-centry/d{:2}',),

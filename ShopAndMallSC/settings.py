@@ -17,10 +17,11 @@ NEWSPIDER_MODULE = 'ShopAndMallSC.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ShopAndMallSC (+http://www.yourdomain.com)'
+#USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
-
+ROBOTSTXT_OBEY = True
+#PROXY_POOL_ENABLED = True
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -56,6 +57,18 @@ ROBOTSTXT_OBEY = False
 #    'ShopAndMallSC.middlewares.ShopandmallscDownloaderMiddleware': 543,
 #}
 
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+}
+
+#DOWNLOADER_MIDDLEWARES = {
+#    # ...
+#    'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
+#    'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
+#    # ...
+#}
+
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -70,7 +83,7 @@ ITEM_PIPELINES = {
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 #AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
@@ -83,7 +96,7 @@ ITEM_PIPELINES = {
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
+HTTPCACHE_ENABLED = True
 #HTTPCACHE_EXPIRATION_SECS = 0
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
